@@ -4,11 +4,13 @@
     "main": "multihashing",
     "author": {
         "name": "Matthew Little",
+        "name": "trustfarm",
         "email": "zone117x@gmail.com"
+        "email": "trustfarm.info@gmail.com"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/altpooler/node-multi-hashing-yescrypt.git"
+        "url": "https://github.com/trustfarm-dev/node-multi-hashing.git"
     },
     "dependencies" : {
         "bindings" : "*"
@@ -27,6 +29,8 @@
         "blake",
         "shavite",
         "fugue",
-        "sha1"
+        "sha1",
+        "groestl",
+        "groestlmyriad"
     ]
 }
