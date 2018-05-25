@@ -6,11 +6,10 @@
 extern "C" {
     #include "bcrypt.h"
     #include "keccak.h"
+    #include "lyra2z.h"
     #include "quark.h"
     #include "scryptjane.h"
     #include "scryptn.h"
-    #include "yescrypt/yescrypt.h"
-    #include "yescrypt/sha256_Y.h"
     #include "skein.h"
     #include "x11.h"
     #include "groestl.h"
@@ -24,7 +23,16 @@ extern "C" {
     #include "nist5.h"
     #include "sha1.h"
     #include "x15.h"
-	#include "fresh.h"
+    #include "fresh.h"
+    #include "yescrypt/yescrypt.h"
+    #include "yescrypt/sha256_Y.h"
+    #include "Sponge.h"
+    #include "tribus.h"
+    #include "whirlpoolx.h"
+    #include "lyra2.h"
+    #include "lyra2re.h"
+    // #include "lyra2rev2.h"
+    #include "neoscrypt.h"
 }
 
 #include "boolberry.h"
@@ -602,6 +610,72 @@ Handle<Value> fresh(const Arguments& args) {
     return scope.Close(buff->handle_);
 }
 
+Handle<Value> lyra2rev2(const Arguments& args) {
+    HandleScope scope;
+
+    if (args.Length() < 1)
+        return except("You must provide one argument.");
+
+    Local<Object> target = args[0]->ToObject();
+
+    if(!Buffer::HasInstance(target))
+        return except("Argument should be a buffer object.");
+
+    char * input = Buffer::Data(target);
+    char output[32];
+
+    uint32_t input_len = Buffer::Length(target);
+
+    lyra2rev2_hash(input, output);
+
+    Buffer* buff = Buffer::New(output, 32);
+    return scope.Close(buff->handle_);
+}
+
+Handle<Value> lyra2z(const Arguments& args) {
+    HandleScope scope;
+
+    if (args.Length() < 1)
+        return except("You must provide one argument.");
+
+    Local<Object> target = args[0]->ToObject();
+
+    if(!Buffer::HasInstance(target))
+        return except("Argument should be a buffer object.");
+
+    char * input = Buffer::Data(target);
+    char output[32];
+
+    uint32_t input_len = Buffer::Length(target);
+
+    lyra2z_hash(input, output);
+
+    Buffer* buff = Buffer::New(output, 32);
+    return scope.Close(buff->handle_);
+}
+
+Handle<Value> neoscrypt(const Arguments& args) {
+    HandleScope scope;
+
+    if (args.Length() < 1)
+        return except("You must provide one argument.");
+
+    Local<Object> target = args[0]->ToObject();
+
+    if(!Buffer::HasInstance(target))
+        return except("Argument should be a buffer object.");
+
+    char * input = Buffer::Data(target);
+    char output[32];
+
+    uint32_t input_len = Buffer::Length(target);
+
+    neoscrypt(input, output, 0);
+
+    Buffer* buff = Buffer::New(output, 32);
+    return scope.Close(buff->handle_);
+}
+
 void init(Handle<Object> exports) {
     exports->Set(String::NewSymbol("quark"), FunctionTemplate::New(quark)->GetFunction());
     exports->Set(String::NewSymbol("x11"), FunctionTemplate::New(x11)->GetFunction());
@@ -626,6 +700,9 @@ void init(Handle<Object> exports) {
     exports->Set(String::NewSymbol("sha1"), FunctionTemplate::New(sha1)->GetFunction());
     exports->Set(String::NewSymbol("x15"), FunctionTemplate::New(x15)->GetFunction());
     exports->Set(String::NewSymbol("fresh"), FunctionTemplate::New(fresh)->GetFunction());
+    exports->Set(String::NewSymbol("lyra2z"), FunctionTemplate::New(lyra2z)->GetFunction());
+    exports->Set(String::NewSymbol("lyra2rev2"), FunctionTemplate::New(lyra2rev2)->GetFunction());
+    exports->Set(String::NewSymbol("neoscrypt"), FunctionTemplate::New(neoscrypt)->GetFunction());
 }
 
 NODE_MODULE(multihashing, init)

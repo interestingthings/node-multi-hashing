@@ -9,7 +9,6 @@
                 "yescrypt/sha256_Y.c",
                 "yescrypt/yescrypt-best.c",
                 "yescrypt/yescryptcommon.c",
-                "keccak.c",
                 "skein.c",
                 "x11.c",
                 "quark.c",
@@ -17,13 +16,18 @@
                 "groestl.c",
                 "blake.c",
                 "fugue.c",
-                "qubit.c",
                 "hefty1.c",
-                "shavite3.c",
-                "cryptonight.c",
-                "x13.c",
-                "boolberry.cc",
+                "keccak.c",
+                "lyra2.c",
+                "lyra2re.c",
+                "lyra2z.c",
+                "neoscrypt.c",
                 "nist5.c",
+                "quark.c",
+                "qubit.c",
+                "shavite3.c",
+                "Sponge.c",
+                "tribus.c",
                 "sha1.c",
                 "x15.c",
                 "fresh.c",
@@ -44,6 +48,7 @@
                 "sha3/sph_whirlpool.c",
                 "sha3/sph_shabal.c",
                 "sha3/hamsi.c",
+                "whirlpoolx.c",
                 "crypto/oaes_lib.c",
                 "crypto/c_keccak.c",
                 "crypto/c_groestl.c",
@@ -58,7 +63,7 @@
                 "crypto",
             ],
             "cflags_cc": [
-                "-std=c++0x"
+                "-std=c++0x -fpermissive"
             ],
         }
     ]
