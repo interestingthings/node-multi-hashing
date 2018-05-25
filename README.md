@@ -1,5 +1,8 @@
-node-multi-hashing
+node-multi-hashing  - mod by trustfarm 
 ===============
+# this modification is compatible with zone117x NOMP stratum module.
+  this multihashing modules are built with node 0.10.xx
+  if you want to use latest nomp , check it foxer666 multihashing module
 
 [![Build Status](https://travis-ci.org/zone117x/node-multi-hashing.png?branch=master)](https://travis-ci.org/zone117x/node-multi-hashing)
 
@@ -28,6 +31,12 @@ Algorithms
 * shavite3
 * cryptonight
 * boolberry
+==== newly added ====
+* groestlmyriad [tested] 
+* lyra2rev2	[testing]
+* lyra2z	[testing]
+* neoscrypt	[testing]
+* whirlpoolx	[testing]
 
 Usage
 -----
