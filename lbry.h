@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include <stdint.h>
+
 void lbry_hash(const char* input, char* output);
 
 #ifdef __cplusplus
