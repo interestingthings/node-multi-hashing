@@ -32,7 +32,8 @@ Algorithms
 * cryptonight
 * boolberry
 ==== newly added ====
-* groestlmyriad [tested] 
+* groestlmyriad [tested with VERGE, DigiByte] 
+* LBRY          [tested with LBRY Stratum, hashing is tested. multiplier tunning] 
 * lyra2rev2	[testing]
 * lyra2z	[testing]
 * neoscrypt	[testing]
@@ -87,3 +88,4 @@ Credits
 * [scrypt](http://en.wikipedia.org/wiki/Scrypt) - Colin Percival
 * [bcrypt](http://en.wikipedia.org/wiki/Bcrypt) - Niels Provos and David Mazières
 * [X11](http://www.darkcoin.io/), [Hefty1](http://heavycoin.github.io/about.html), [Quark](http://www.qrk.cc/) creators (they just mixed together a bunch of the above algos)
+* [LBRY](http://lbry.io) - trustfarm migration from lbry miner sources
