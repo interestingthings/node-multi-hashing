@@ -34,6 +34,7 @@ extern "C" {
     // #include "lyra2rev2.h"
     #include "neoscrypt.h"
     #include "lbry.h"
+    #include "timetravel10.h"
 }
 
 #include "boolberry.h"
@@ -700,6 +701,28 @@ Handle<Value> lbry(const Arguments &args)
     return scope.Close(buff->handle_);
 }
 
+Handle<Value> timetravel10(const Arguments &args)
+{
+    HandleScope scope;
+
+    if (args.Length() < 1)
+        return except("You must provide one argument.");
+
+    Local<Object> target = args[0]->ToObject();
+
+    if (!Buffer::HasInstance(target))
+        return except("Argument should be a buffer object.");
+
+    char *input = Buffer::Data(target);
+    char output[32];
+
+    uint32_t input_len = Buffer::Length(target);
+
+    timetravel10_hash(input, output, input_len);
+
+    Buffer *buff = Buffer::New(output, 32);
+    return scope.Close(buff->handle_);
+}
 
 void init(Handle<Object> exports) {
     exports->Set(String::NewSymbol("quark"), FunctionTemplate::New(quark)->GetFunction());
@@ -729,6 +752,7 @@ void init(Handle<Object> exports) {
     exports->Set(String::NewSymbol("lyra2rev2"), FunctionTemplate::New(lyra2rev2)->GetFunction());
     exports->Set(String::NewSymbol("neoscrypt"), FunctionTemplate::New(neoscrypt)->GetFunction());
     exports->Set(String::NewSymbol("lbry"), FunctionTemplate::New(lbry)->GetFunction());
+    exports->Set(String::NewSymbol("timetravel10"), FunctionTemplate::New(lbry)->GetFunction());
 }
 
 NODE_MODULE(multihashing, init)

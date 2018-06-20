@@ -38,6 +38,7 @@ Algorithms
 * lyra2z	[testing]
 * neoscrypt	[testing]
 * whirlpoolx	[testing]
+* timetravel10	[untested] import from https://github.com/hardx4/node-multi-hashing/ 
 
 Usage
 -----
@@ -89,3 +90,5 @@ Credits
 * [bcrypt](http://en.wikipedia.org/wiki/Bcrypt) - Niels Provos and David Mazières
 * [X11](http://www.darkcoin.io/), [Hefty1](http://heavycoin.github.io/about.html), [Quark](http://www.qrk.cc/) creators (they just mixed together a bunch of the above algos)
 * [LBRY](http://lbry.io) - trustfarm migration from lbry miner sources
+* [TIMETRAVEL10](https://bitcore.cc/) - trustfarm import from hard4x's multihashing sources
+
